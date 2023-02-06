@@ -150,54 +150,54 @@ class JSArray extends JObject implements \ArrayAccess, \Iterator
     }
 
 
-    public function current()
+    public function current(): mixed
     {
         return $this->_convert(current($this->array));
     }
 
-    public function key()
+    public function key(): mixed
     {
         return $this->_convert(key($this->array));
     }
 
-    public function next()
+    public function next(): void
     {
-        return $this->_convert(next($this->array));
+        $this->_convert(next($this->array));
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->array[$offset]);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         if(!$this->offsetExists($offset))
             return null;
         return $this->_convert($this->array[$offset]);
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->array[$offset] = $value;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->array[$offset]);
     }
 
-    public function rewind()
+    public function rewind(): void
     {
-        return reset($this->array);
+        reset($this->array);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return key($this->array) !== null;
     }
 
-    public function valueOf()
+    public function valueOf(): array
     {
         return $this->array;
     }
